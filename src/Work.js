@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import Card from './components/Card';
-
+import {getJson} from './utils/helpers';
 import Bg from './image/home1.jpg';
+
 
 let cardData = [
   {title:'第一天',desc:'第一天描述',img:Bg,url:'a'},
@@ -12,6 +13,12 @@ let cardData = [
 ]
 
 class Work extends React.Component {
+  componentDidMount(){
+    getJson()
+    .then( (recData)=>{
+       console.log(recData.getJson);
+    })
+  }
   render () {
     return(
       <div className="container-fluid">

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {searchGit} from './utils/helpers.js'
 
+
 class About extends React.Component {
   constructor(){
     super();
@@ -16,17 +17,19 @@ class About extends React.Component {
       inputValue:value
     })
   }
-  componentDidMount(){
-    // searchGit()
-    //   .then( (recdata)=>{
+ 
+  handleClick(){
+    let name = this.state.inputValue;
+    searchGit(name)
+      .then( (recdata)=>{
         
-    //     this.setState({
-    //       data:recdata.getdata,
-    //       wait:false
-    //     })
-    //     console.log(this.state.data)
-    //   })
-    
+        this.setState({
+          data:recdata.getdata,
+          wait:false
+        })
+        console.log(this.state.data)
+      })
+
   }
   render () {
     let gitInfo=(
@@ -38,7 +41,7 @@ class About extends React.Component {
     return(
         <div>
           <input type='text' value={this.state.inputValue} onChange={this.handleInput.bind(this)}/>
-          <button>搜索</button>
+          <button onClick={this.handleClick.bind(this)} >搜索</button>
          {this.state.wait ? '正在获取数据' : gitInfo}
         </div>
       )
