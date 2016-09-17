@@ -6,25 +6,42 @@ class About extends React.Component {
     super();
     this.state={
       data:{},
-      wait:true
+      wait:true,
+      inputValue:'username'
     }
   }
+  handleInput(e){
+    let value = e.target.value;
+    this.setState({
+      inputValue:value
+    })
+  }
   componentDidMount(){
-    searchGit()
-      .then( (data)=>{
-        console.log(data);
-      })
+    // searchGit()
+    //   .then( (recdata)=>{
+        
+    //     this.setState({
+    //       data:recdata.getdata,
+    //       wait:false
+    //     })
+    //     console.log(this.state.data)
+    //   })
     
   }
   render () {
+    let gitInfo=(
+        <div>
+          <h2>{this.state.data.name}</h2>
+          <img src ={this.state.data.avatar_url}/> 
+        </div>
+      )
     return(
-      <div>
-        {
-          this.state.wait ? '正在获取数据' :
-          <img src={this.state.data.avatar_url} />
-        }
-      </div>
-    )
+        <div>
+          <input type='text' value={this.state.inputValue} onChange={this.handleInput.bind(this)}/>
+          <button>搜索</button>
+         {this.state.wait ? '正在获取数据' : gitInfo}
+        </div>
+      )
   }
 }
 
