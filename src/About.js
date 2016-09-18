@@ -22,7 +22,6 @@ class About extends React.Component {
     let name = this.state.inputValue;
     searchGit(name)
       .then( (recdata)=>{
-        
         this.setState({
           data:recdata.getdata,
           wait:false
