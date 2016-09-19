@@ -19,7 +19,7 @@ class Blog extends React.Component {
            data:recData.getMd,
            wait:false
          })
-         console.log(this.state.data);
+      
        });
    }
   render () {
